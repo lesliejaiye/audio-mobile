@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobile Video with Mute Toggle</title>
+  <title>Mobile Video with Centered Mute Toggle</title>
   <style>
     body {
       margin: 0;
@@ -28,13 +28,14 @@
 
     .mute-button {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(255, 255, 255, 0.7);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.8);
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -43,8 +44,8 @@
     }
 
     .mute-button svg {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
       fill: #000;
     }
   </style>
@@ -52,12 +53,11 @@
 <body>
   <div class="video-container">
     <video id="myVideo" autoplay muted loop playsinline>
-      <source src="https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1234567890/your-video.mp4" type="video/mp4" />
+      <source src="https://player.cloudinary.com/embed/?cloud_name=dhigle4nw&public_id=thandie_video_s2cnjp&profile=cld-default" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
 
     <button class="mute-button" id="muteBtn" aria-label="Toggle mute">
-      <!-- Speaker icon (initially muted) -->
       <svg id="muteIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47zM12 3.23v17.54c0 .3-.19.57-.47.67-.28.1-.6.01-.8-.22L7.58 17H4c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h3.58l3.15-4.22c.2-.23.52-.32.8-.22.28.1.47.37.47.67z"/>
       </svg>
