@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Video with Mute Toggle</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: sans-serif;
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .mute-button {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .mute-button svg {
+      width: 20px;
+      height: 20px;
+      fill: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video id="myVideo" autoplay muted loop playsinline>
+      <source src="https://res.cloudinary.com/YOUR_CLOUD_NAME/video/upload/v1234567890/your-video.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <button class="mute-button" id="muteBtn" aria-label="Toggle mute">
+      <!-- Speaker icon (initially muted) -->
+      <svg id="muteIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47zM12 3.23v17.54c0 .3-.19.57-.47.67-.28.1-.6.01-.8-.22L7.58 17H4c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h3.58l3.15-4.22c.2-.23.52-.32.8-.22.28.1.47.37.47.67z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+    const muteBtn = document.getElementById('muteBtn');
+    const muteIcon = document.getElementById('muteIcon');
+
+    const iconMuted = `
+      <path d="M16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47zM12 3.23v17.54c0 .3-.19.57-.47.67-.28.1-.6.01-.8-.22L7.58 17H4c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h3.58l3.15-4.22c.2-.23.52-.32.8-.22.28.1.47.37.47.67z"/>
+    `;
+
+    const iconUnmuted = `
+      <path d="M12 3.23v17.54c0 .3-.19.57-.47.67-.28.1-.6.01-.8-.22L7.58 17H4c-.55 0-1-.45-1-1V8c0-.55.45-1 1-1h3.58l3.15-4.22c.2-.23.52-.32.8-.22.28.1.47.37.47.67zM16.5 12c0-1.77-.77-3.37-2-4.47v8.94c1.23-1.1 2-2.7 2-4.47zM18.3 5.71l-1.41 1.41C18.49 9.14 19.5 10.96 19.5 13s-1.01 3.86-2.61 5.88l1.41 1.41C20.18 17.85 21.5 15.54 21.5 13s-1.32-4.85-3.2-7.29z"/>
+    `;
+
+    muteBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      muteIcon.innerHTML = video.muted ? iconMuted : iconUnmuted;
+    });
+  </script>
+</body>
+</html>
